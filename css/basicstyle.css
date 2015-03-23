@@ -1,0 +1,105 @@
+
+#menu{
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	padding-right:30px;
+	height:90px;
+	z-index:1000;
+}
+
+#menu .item{
+	float:right;
+	line-height: 90px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color:black;
+	text-decoration: none;
+	margin:0px 25px;
+	outline: none;
+}
+
+#menu .item:hover{
+	color:#cdcdcd;
+}
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+#sadrzaj-novosti{
+	font-family:monospace, serif;
+	color:black;
+	padding-top:20px;
+	padding-bottom:20px;
+	margin:0 auto;
+	width: 70%;
+}
+.novost-head{
+
+}
+.novost-autor{
+	padding: 0px 0px 0px 30px;
+}
+	
+.novost-naslov{
+	position: relative;
+	margin-left:auto;
+	margin-right:auto;
+	padding:5px 30px 0px 30px;
+}
+.novost-datum{
+	float: right;
+	margin-right: 10px;
+	margin-top: 25px;
+	padding-right: 20px;
+}
+.novost-body{
+	padding: 10px 30px 30px 30px;
+}
+.novost-slika{
+	float: left;
+	margin-right: 2%;
+}
+#sadrzaj-novosti .novost-sadrzaj p{
+
+}
+.detaljnije{
+	padding-right:50px;
+}
+
+.contact-input{
+	display:block;
+	margin:0 0 10px 0;
+	width:60%;
+	padding:5px;
+}
+.contact-textarea{
+	display:block;
+	margin:0 0 10px 0;
+	width:60%;
+	padding:5px;
+}
+.contact-button{
+	width:180px;
+	background:rgb(30, 81, 128);
+	border:0;
+	color:#fff;
+	padding:5px;
+	border-radius:2px;
+}
+.contact-label{
+	display:
+	block;
+	margin:0 0 10px 0
+}
