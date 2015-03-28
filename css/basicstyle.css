@@ -7,6 +7,7 @@
 	padding-right:30px;
 	height:90px;
 	z-index:1000;
+	background: rgb(30, 81, 128);
 }
 
 #menu .item{
@@ -15,10 +16,13 @@
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
-	color:black;
+	color: #ededed;
 	text-decoration: none;
 	margin:0px 25px;
 	outline: none;
+}
+.logo{
+	display: inline;
 }
 
 #menu .item:hover{
@@ -78,6 +82,13 @@ html {
 	padding-right:50px;
 }
 
+.contact-form{
+	padding-left:50px	;
+
+}
+.contact-header{
+	padding-left:50px;
+}
 .contact-input{
 	display:block;
 	margin:0 0 10px 0;
@@ -99,7 +110,22 @@ html {
 	border-radius:2px;
 }
 .contact-label{
-	display:
-	block;
+	display: block;
 	margin:0 0 10px 0
+}
+.tabela{
+	position: absolute;
+	left:500px;
+	top:100px;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+.tabela_thtd{
+	border: 1px solid black;
+}
+.moja_lista{
+	position: absolute;
+	left:500px;
+	top:100px;
+	list-style-image: url('http://www.w3schools.com/cssref/sqpurple.gif');
 }
