@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
 
 #menu{
 	position: fixed;
@@ -23,6 +24,8 @@
 }
 .logo{
 	display: inline;
+	float:left;
+	padding-left: 50px;
 }
 
 #menu .item:hover{
@@ -42,7 +45,7 @@ html {
 }
 
 #sadrzaj-novosti{
-	font-family:monospace, serif;
+	font-family:sans-serif;
 	color:black;
 	padding-top:20px;
 	padding-bottom:20px;
@@ -80,6 +83,7 @@ html {
 }
 .detaljnije{
 	padding-right:50px;
+	text-align: right;
 }
 
 .contact-form{
@@ -113,19 +117,77 @@ html {
 	display: block;
 	margin:0 0 10px 0
 }
-.tabela{
-	position: absolute;
-	left:500px;
-	top:100px;
-	border-collapse: collapse;
-	border: 1px solid black;
-}
-.tabela_thtd{
-	border: 1px solid black;
-}
+
 .moja_lista{
-	position: absolute;
+	font-size: 20px;
+	position: relative;
 	left:500px;
-	top:100px;
 	list-style-image: url('http://www.w3schools.com/cssref/sqpurple.gif');
+}
+.info{
+	padding-left: 50px;
+	font-size: 25px;
+	text-align: center;
+}
+
+
+table {
+	position: relative;
+	left:420px;
+	font-family: sans-serif;
+}
+table, th, td {
+	padding: 20px;
+	border: 1px solid white;
+	border-collapse: collapse;
+}
+
+table th {
+	text-align: center;
+	color: white;
+    background-color: rgb(30, 81, 128);
+    font-size: 110%;
+    font-family:sans-serif;
+	
+}
+
+table tr:nth-child(even) {
+    background-color: #eee;
+}
+table tr:nth-child(odd) {
+   background-color: SteelBlue;
+   color:white;
+}
+
+footer{
+	padding-right: 50px;
+	text-align: right;
+}
+.kontakt-forma, .putovanja, .partners{
+
+	min-height: 500px;
+}
+#corendon{
+ 	list-style-image: url("corendon.jpg");
+}
+#akay{
+ 	list-style-image: url("akay.jpg");
+}
+#austrian{
+ 	list-style-image: url("austrian.jpg");
+}
+#turkish{
+	list-style-image: url("turkish.jpg");
+}
+.agency-name{
+	font-family: Montserrat;
+	float:left;
+	line-height: 90px;
+	font-size: 25px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #ededed;
+	text-decoration: none;
+	margin:0px 25px;
+	outline: none;
 }

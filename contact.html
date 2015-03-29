@@ -6,32 +6,42 @@
 		<link rel="stylesheet" type="text/css" href="css/basicstyle.css">
 	</HEAD>
 	<BODY> 
-		<div id="menu">
-			<img class="logo" src="img/logo.png">
+		<header id="menu">
+			<a href="index.html"><img class="logo" src="img/logoo.png" alt="#"></a>
+			<a href="index.html" class="agency-name">Air Express</a>
 			<a href="contact.html" class="item">Contact</a>
 			<a href="index.html" class="item">News</a>
 			<a href="partners.html" class="item">Partners</a>
 			<a href="tableview.html" class="item">Table View</a>
-		</div>
+		</header>
 		<br><br><br>
-		<h1 class="contact-header">Kontaktirajte nas!</h1>   
-            <form class="contact-form" action="#" method="post" enctype="multipart/form-data">
-          
-                <label for="inputNameSurname" class="contact-label">Name and surname:</label>
-                <input type="text" name="l_imePrezime" class="contact-input" placeholder="Unesite ime i prezime">
+		<div class="kontakt-forma">
+			<p class="info">Za sva pitanja, sugestije i kritike, možete nam se obratiti putem ove kontakt forme!</p>
+			<h2 class="contact-header">Kontaktirajte nas!</h2>   
+	        <form class="contact-form" action="#" method="post" enctype="multipart/form-data">
+	      
+	            <label class="contact-label">Name and surname:</label>
+	            <input type="text" name="l_imePrezime" class="contact-input" placeholder="Unesite ime i prezime">
 
+	            <label class="contact-label">Email :</label>
+	            <input type="email" class="contact-input" >
 
-                <label for="inputEmail" class="contact-label">Email :</label>
-                <input type="email" class="contact-input" id="inputEmail" placeholder="Unesite email">
+	            <label class="contact-label">Url :</label>
+	            <input type="url" class="contact-input" placeholder="Unesite url vašeg fb profila">
 
+	            <label class="contact-label">Tel :</label>
+	            <input type="tel" class="contact-input" placeholder="Unesite vaš broj telefona">
 
-                <div class="form-group" >
-                  <label for="inputPassword" style="display:block;margin:0 0 10px 0">Content :</label>
-                 
-                    <textarea class="contact-textarea" name="sadrzaj" rows="10" cols="10" placeholder="Unesite pitanje"></textarea>
-                    <button  class="contact-button" name="dodaj" type="submit">Send</button>
-
-                </div>
-            </form>
+	            <div>
+	              <label style="display:block;margin:0 0 10px 0">Content :</label>
+	              <textarea class="contact-textarea" name="sadrzaj" rows="10" cols="10" placeholder="Unesite pitanje"></textarea>
+	              <button  class="contact-button" name="dodaj" type="submit">Send</button>
+	            </div>
+	        </form>
+        </div>
+		<footer>
+			<p>Copyright 2015 Emir Đenašević</p>
+			<p>emir.dj93@gmail.com</p>
+		</footer>
 	</BODY>
 </HTML>
