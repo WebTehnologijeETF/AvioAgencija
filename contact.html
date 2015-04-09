@@ -6,13 +6,26 @@
 		<link rel="stylesheet" type="text/css" href="css/basicstyle.css">
 	</HEAD>
 	<BODY> 
-		<header id="menu">
-			<a href="index.html"><img class="logo" src="img/logoo.png" alt="#"></a>
-			<a href="index.html" class="agency-name">Air Express</a>
-			<a href="contact.html" class="item">Contact</a>
-			<a href="index.html" class="item">News</a>
-			<a href="partners.html" class="item">Partners</a>
-			<a href="tableview.html" class="item">Table View</a>
+		<header id="menuu">
+			<ul id="menu">
+				<li><a href="index.html"><img class="logo" src="img/logoo.png" alt="#"></a></li>
+				<li><a href="index.html" class="agency-name">Air Express</a></li>
+				<li><a href="contact.html" class="item">Contact</a></li>
+				<li><a href="index.html" class="item">News</a></li>
+				<li><a href="partners.html" class="item">Partners</a></li>
+				<li><a href="tableview.html" class="item">Table View</a></li>
+				<li><a href="#" class="item" onmouseover="OpenMenu('sub-menu')">Podaci o poslovnicama</a>
+					<ul id="sub-menu" 
+						onmouseover="KeepSubmenu()"
+						onmouseout="CloseMenu()">
+						<li><a href="#">Poslovnica 1</a></li>
+						<li><a href="#">Poslovnica 2</a></li>
+						<li><a href="#">Poslovnica 3</a></li>
+						<li><a href="#">Poslovnica 4</a></li>
+						<li><a href="#">Poslovnica 5</a></li>
+					</ul>
+				</li>
+			<ul>
 		</header>
 		<br><br><br>
 		<div class="kontakt-forma">
@@ -43,5 +56,6 @@
 			<p>Copyright 2015 Emir Đenašević</p>
 			<p>emir.dj93@gmail.com</p>
 		</footer>
+		<script type="text/javascript" src="js/avioagency.js"></script>
 	</BODY>
 </HTML>

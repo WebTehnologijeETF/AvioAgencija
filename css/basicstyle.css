@@ -2,7 +2,7 @@
 
 #menu{
 	position: fixed;
-	top:0;
+	top:-16px;
 	left:0;
 	right:0;
 	padding-right:30px;
@@ -10,7 +10,9 @@
 	z-index:1000;
 	background: rgb(30, 81, 128);
 }
-
+#menu li{
+	list-style: none;
+}
 #menu .item{
 	float:right;
 	line-height: 90px;
@@ -22,6 +24,38 @@
 	margin:0px 25px;
 	outline: none;
 }
+#menu ul
+  {
+   visibility: hidden;
+   margin: 0;
+   padding: 0;
+   background: rgb(30, 81, 128);
+   border: 1px solid white;
+  }
+ #menu #sub-menu{
+ 	position: relative;
+ 	top:70px;
+ 	left:210px;
+  	float: right;
+  	line-height: 30px;
+  	width: 130px;
+  	text-align: center;
+  	font-size: 14px;
+  	font-weight: bold;
+  	text-transform: uppercase;
+  	margin: 0px 25px;
+  	outline: none;
+  }
+  #menu #sub-menu a{
+  	color: #ededed;
+  	text-decoration: none;
+  	
+  }
+  #menu ul a:hover
+  {
+   background-color: #cdcdcd;
+  }
+
 .logo{
 	display: inline;
 	float:left;
