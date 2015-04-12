@@ -10,14 +10,15 @@
 			<ul id="menu">
 				<li><a href="index.html"><img class="logo" src="img/logoo.png" alt="#"></a></li>
 				<li><a href="index.html" class="agency-name">Air Express</a></li>
+				<li><a href="register.html" class="registracija">Registracija</a></li>
 				<li><a href="contact.html" class="item">Contact</a></li>
 				<li><a href="index.html" class="item">News</a></li>
 				<li><a href="partners.html" class="item">Partners</a></li>
 				<li><a href="tableview.html" class="item">Table View</a></li>
-				<li><a href="#" class="item" onmouseover="OpenMenu('sub-menu')">Podaci o poslovnicama</a>
+				<li><a href="#" class="item" onmouseover="OtvoriMeni('sub-menu')">Podaci o poslovnicama</a>
 					<ul id="sub-menu" 
-						onmouseover="KeepSubmenu()"
-						onmouseout="CloseMenu()">
+						onmouseover="DrziOtvoren()"
+						onmouseout="ZatvoriMeni()">
 						<li><a href="#">Poslovnica 1</a></li>
 						<li><a href="#">Poslovnica 2</a></li>
 						<li><a href="#">Poslovnica 3</a></li>
@@ -35,7 +36,7 @@
 	      
 	            <label class="contact-label">Name and surname:</label>
 	            <input type="text" name="l_imePrezime" class="contact-input" placeholder="Unesite ime i prezime">
-
+	            
 	            <label class="contact-label">Email :</label>
 	            <input type="email" class="contact-input" >
 

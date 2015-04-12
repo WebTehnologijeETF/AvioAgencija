@@ -120,14 +120,14 @@ html {
 	text-align: right;
 }
 
-.contact-form{
+.contact-form, .register-form{
 	padding-left:50px	;
 
 }
-.contact-header{
+.contact-header, .register-header{
 	padding-left:50px;
 }
-.contact-input{
+.contact-input, .register-input{
 	display:block;
 	margin:0 0 10px 0;
 	width:60%;
@@ -139,7 +139,7 @@ html {
 	width:60%;
 	padding:5px;
 }
-.contact-button{
+.contact-button, .register-button{
 	width:180px;
 	background:rgb(30, 81, 128);
 	border:0;
@@ -147,7 +147,7 @@ html {
 	padding:5px;
 	border-radius:2px;
 }
-.contact-label{
+.contact-label, .register-label{
 	display: block;
 	margin:0 0 10px 0
 }
@@ -225,3 +225,23 @@ footer{
 	margin:0px 25px;
 	outline: none;
 }
+
+.registracija{
+	float:left;
+	line-height: 90px;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #ededed;
+	text-decoration: none;
+	margin:0px 25px;
+	outline: none;
+}
+
+#imePrezimeErrorProvider, #imePrezime, 
+#username, #userNameErrorProvider,
+#email, #emailErrorProvider,
+#sifra, #sifraErrorProvider,
+#potvrdiSifru, #potvrdiSifruErrorProvider{
+	float:left;
+}	

@@ -1,28 +1,25 @@
-var Item;
+var Meni;
 var Timer;
-document.onclick = CloseMenu;
+document.onclick = ZatvoriMeni;
 
-
-function OpenMenu(Menu)
+function OtvoriMeni(subMenu)
 {
-	if (Item) Item.style.visibility = "hidden";
-  	Item = document.getElementById(Menu);
-  	Item.style.visibility = "visible";
+	if (Meni) Meni.style.visibility = "hidden";
+  	Meni = document.getElementById(subMenu);
+  	Meni.style.visibility = "visible";
 }
 
-
-function CloseMenu()
+function ZatvoriMeni()
 {
-	Timer = window.setTimeout(PerformClose, 10);
+	Timer = window.setTimeout(Zatvori, 10);
 }
 
-function PerformClose()
+function Zatvori()
 {
-	if (Item) Item.style.visibility = "hidden";
+	if (Meni) Meni.style.visibility = "hidden";
 }
 
-
-function KeepSubmenu()
+function DrziOtvoren()
 {
 	window.clearTimeout(Timer);
 }
