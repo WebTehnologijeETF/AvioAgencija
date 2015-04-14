@@ -12,7 +12,7 @@ sifraTb.removeEventListener("onblur");
 ponoviSifruTb.removeEventListener("onblur");
 usernameTb.removeEventListener("onblur");
 button.disabled= true;
-button.setAttribute('background', 'grey');
+button.style.backgroundColor="grey";
 
 function addAlert(id, url, error) {
     var div = document.getElementById(id);
@@ -25,6 +25,10 @@ function addAlert(id, url, error) {
     if(error===''){
     	div.setAttribute('class', 'OK');
     }
+    else{
+    	div.setAttribute('class', 'notOK');
+    	button.style.backgroundColor="grey";
+    }
     var newContent = document.createElement("img");
 	newContent.setAttribute('src', url);
 	var errorText = document.createTextNode(error);
@@ -35,7 +39,7 @@ function addAlert(id, url, error) {
 function provjeriValidaciju() {
     if (document.getElementsByClassName("OK").length === 5) {
         button.disabled = false;
-        button.setAttribute('background', 'rgb(30, 81, 128)');
+        button.style.backgroundColor="rgb(30, 81, 128)";
     } else {
         button.disabled = true;
     }
@@ -56,26 +60,26 @@ nameSurnameTb.addEventListener("blur", function(){
 	if(nameSurname!==''){
 		if(nameSurname.length>30){
 			nameSurnameTb.style.backgroundColor = "#FF8080";
-			addAlert("imePrezimeErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Predugo ime i prezime');
+			addAlert("imePrezimeErrorProvider", 'img/brisanje.png', 'Predugo ime i prezime');
 			nameSurnameTb.focus();
 		}
 		else if(nameSurname.length<4){
 			nameSurnameTb.style.backgroundColor = "#FF8080";
-			addAlert("imePrezimeErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Prekratko ime i prezime');	
+			addAlert("imePrezimeErrorProvider", 'img/brisanje.png', 'Prekratko ime i prezime');	
 			nameSurnameTb.focus();
 		}
 		else if(!samoSlova(nameSurname)){
 			nameSurnameTb.style.backgroundColor = "#FF8080";
-			addAlert("imePrezimeErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Ime i prezime mora sadrzavati samo slova');	
+			addAlert("imePrezimeErrorProvider", 'img/brisanje.png', 'Ime i prezime mora sadrzavati samo slova');	
 			nameSurnameTb.focus();
 		}
 		else{
-			addAlert("imePrezimeErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/zad_ok.png', '');
+			addAlert("imePrezimeErrorProvider", 'img/zad_ok.png', '');
             nameSurnameTb.style.backgroundColor = "#80FF80";
 		}
 	}
 	else{
-		addAlert("imePrezimeErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Morate ispuniti ovo polje');
+		addAlert("imePrezimeErrorProvider", 'img/brisanje.png', 'Morate ispuniti ovo polje');
 		nameSurnameTb.style.backgroundColor="white";
 	}
 	provjeriValidaciju();
@@ -86,17 +90,17 @@ emailTb.addEventListener("blur", function(){
 	if(email!==''){
 		var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		if(email.match(emailRegex)){
-			addAlert('emailErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/zad_ok.png', '');
+			addAlert('emailErrorProvider', 'img/zad_ok.png', '');
 			emailTb.style.backgroundColor="#80FF80";
 		}
 		else{
 			emailTb.style.backgroundColor="#FF8080";
-			addAlert('emailErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Nije validan format emaila');
+			addAlert('emailErrorProvider', 'img/brisanje.png', 'Nije validan format emaila');
 			emailTb.focus();
 		}
 	}
 	else{
-		addAlert("emailErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Morate ispuniti ovo polje');
+		addAlert("emailErrorProvider", 'img/brisanje.png', 'Morate ispuniti ovo polje');
 		emailTb.style.backgroundColor="white";
 	}
 	provjeriValidaciju();
@@ -107,16 +111,16 @@ sifraTb.addEventListener("blur", function(){
 	if(sifra!==''){
 		if(sifra.length<6){
 			sifraTb.style.backgroundColor="#FF8080";
-			addAlert("sifraErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Prekratka sifra!');
+			addAlert("sifraErrorProvider", 'img/brisanje.png', 'Prekratka sifra!');
 			sifraTb.focus();
 		}
 		else{
-			addAlert('sifraErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/zad_ok.png', '');
+			addAlert('sifraErrorProvider', 'img/zad_ok.png', '');
 			sifraTb.style.backgroundColor = "#80FF80";
 		}
 	}
 	else{
-		addAlert("sifraErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Morate ispuniti ovo polje');
+		addAlert("sifraErrorProvider", 'img/brisanje.png', 'Morate ispuniti ovo polje');
 		sifraTb.style.backgroundColor="white";
 	}
 	provjeriValidaciju();
@@ -127,16 +131,16 @@ ponoviSifruTb.addEventListener("blur", function(){
 	if(ponoviSifru!==''){
 		if(ponoviSifru!=sifra){
 			ponoviSifruTb.style.backgroundColor="#FF8080";
-			addAlert('potvrdiSifruErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Sifre se ne podudaraju!');
+			addAlert('potvrdiSifruErrorProvider', 'img/brisanje.png', 'Sifre se ne podudaraju!');
 			ponoviSifruTb.focus();
 		}
 		else{
-			addAlert('potvrdiSifruErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/zad_ok.png', '');
+			addAlert('potvrdiSifruErrorProvider', 'img/zad_ok.png', '');
 			ponoviSifruTb.style.backgroundColor="#80FF80";
 		}
 	}
 	else{
-		addAlert("potvrdiSifruErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Morate ispuniti ovo polje');
+		addAlert("potvrdiSifruErrorProvider", 'img/brisanje.png', 'Morate ispuniti ovo polje');
 		ponoviSifruTb.style.backgroundColor="white";
 	}
 	provjeriValidaciju();
@@ -146,17 +150,17 @@ usernameTb.addEventListener("blur", function(){
 	var username = usernameTb.value;
 	if(username!==''){
 		if(username.length<6){
-			sifraTb.style.backgroundColor="#FF8080";
-			addAlert('usernameErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Username prekratak!')
-			sifraTb.focus();
+			usernameb.style.backgroundColor="#FF8080";
+			addAlert('usernameErrorProvider', 'img/brisanje.png', 'Username prekratak!')
+			usernameTb.focus();
 		}
 		else{
-			addAlert('usernameErrorProvider', 'https://zamger.etf.unsa.ba/images/16x16/zad_ok.png', '');
+			addAlert('usernameErrorProvider', 'img/zad_ok.png', '');
 			usernameTb.style.backgroundColor='#80FF80';
 		}
 	}
 	else{
-		addAlert("usernameErrorProvider", 'https://zamger.etf.unsa.ba/images/16x16/brisanje.png', 'Morate ispuniti ovo polje');
+		addAlert("usernameErrorProvider", 'img/brisanje.png', 'Morate ispuniti ovo polje');
 		usernameTb.style.backgroundColor="white";
 	}
 	provjeriValidaciju();

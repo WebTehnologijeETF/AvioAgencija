@@ -43,10 +43,10 @@
 
 	            <label for="username" class="register-label">Korisničko ime (username) :</label>
 	            <input id="username" type="text" name="l_username" class="register-input" placeholder="Unesite korisničko ime">
-	            <div id="usernameErrorProvider">
+	            <div for="username" id="usernameErrorProvider">
 	            	&nbsp;&nbsp;
 	            </div>
-	            <br>
+	            <br><br>
 
 	            <label for="email" class="register-label">Email :</label>
 	            <input id="email" type="email" class="register-input" >
@@ -70,7 +70,7 @@
 
 	            <br><br>
 	            <!--input type="submit" class="register-button">Registruj!</input-->
-				<button id="registruj" class="register-button" name="registruj" type="submit">Registruj se!</button>
+				<button id="registruj" class="register-button" name="registruj" onclick="posalji()" type="submit">Registruj se!</button>
 	        </form>
         </div>
 		<footer>

@@ -238,10 +238,12 @@ footer{
 	outline: none;
 }
 
-#imePrezimeErrorProvider, #imePrezime, 
-#username, #userNameErrorProvider,
-#email, #emailErrorProvider,
-#sifra, #sifraErrorProvider,
-#potvrdiSifru, #potvrdiSifruErrorProvider{
+#imePrezimeErrorProvider, #imePrezime, #imePrezimeC, #imePrezimeErrorProviderC,
+#username, #userNameErrorProvider, #contentC, 
+#email, #emailErrorProvider, #emailC, #emailErrorProviderC,
+#sifra, #sifraErrorProvider, #urlC, #urlErrorProviderC,
+#potvrdiSifru, #potvrdiSifruErrorProvider, #telC, #telErrorProviderC{
 	float:left;
 }	
+
+
