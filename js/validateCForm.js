@@ -116,8 +116,8 @@ urlTb.addEventListener("blur", function(){
 		}
 		else{
 			urlTb.style.backgroundColor="#FF8080";
-			addAlert('urlErrorProviderC','img/brisanje.png','Format fb profila nije uredu! (https://facebook.com/profile_name)');
-			urlTb.foucs();
+			addAlert('urlErrorProviderC','img/brisanje.png','Format fb profila nije uredu! (Ispravan format: https://facebook.com/profile_name)');
+			urlTb.focus();
 		}
 	}
 	else{
@@ -137,7 +137,7 @@ telTb.addEventListener("blur", function(){
 		}
 		else{
 			telTb.style.backgroundColor="#FF8080";
-			addAlert('telErrorProviderC', 'img/brisanje.png', '');
+			addAlert('telErrorProviderC', 'img/brisanje.png', 'Neispravan format telefona! Ispravni formati: (061)-123-345 ili 061-123-456 ili 061123456 !');
 			telTb.focus();
 		}
 	}
