@@ -153,9 +153,10 @@ html {
 }
 
 .moja_lista{
-	font-size: 20px;
 	position: relative;
-	left:500px;
+	margin: 0 auto;
+	width: 60%;
+	font-size: 20px;
 	list-style-image: url('http://www.w3schools.com/cssref/sqpurple.gif');
 }
 .info{
@@ -167,7 +168,8 @@ html {
 
 table {
 	position: relative;
-	left:420px;
+	margin:0 auto;
+	width: 60%;
 	font-family: sans-serif;
 }
 table, th, td {
