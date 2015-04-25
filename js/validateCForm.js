@@ -5,11 +5,11 @@ var telTb = document.getElementById("telC");
 var contentTb = document.getElementById("contentC");
 var button = document.getElementById("posaljiC");
 
-imePrezimeTb.removeEventListener("onblur");
-emailTb.removeEventListener("onblur");
-urlTb.removeEventListener("onblur");
-telTb.removeEventListener("onblur");
-contentTb.removeEventListener("onblur");
+//imePrezimeTb.removeEventListener("onblur");
+//emailTb.removeEventListener("onblur");
+//urlTb.removeEventListener("onblur");
+//telTb.removeEventListener("onblur");
+//contentTb.removeEventListener("onblur");
 button.disabled= true;
 button.style.backgroundColor="grey";
 

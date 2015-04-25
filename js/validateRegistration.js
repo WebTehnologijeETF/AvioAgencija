@@ -6,11 +6,11 @@ var usernameTb = document.getElementById("username");
 var button = document.getElementById("registruj");
 var sifra;
 
-nameSurnameTb.removeEventListener("onblur");
-emailTb.removeEventListener("onblur");
-sifraTb.removeEventListener("onblur");
-ponoviSifruTb.removeEventListener("onblur");
-usernameTb.removeEventListener("onblur");
+//nameSurnameTb.removeEventListener("onblur");
+//emailTb.removeEventListener("onblur");
+//sifraTb.removeEventListener("onblur");
+//ponoviSifruTb.removeEventListener("onblur");
+//usernameTb.removeEventListener("onblur");
 button.disabled= true;
 button.style.backgroundColor="grey";
 
