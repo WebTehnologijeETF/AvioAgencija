@@ -8,14 +8,14 @@
 	<BODY> 
 		<header id="menuu">
 			<ul id="menu">
-				<li><a href="index.html"><img class="logo" src="img/logoo.png" alt="#"></a></li>
-				<li><a href="index.html" class="agency-name">Air Express</a></li>
-				<li><a href="register.html" class="registracija">Registracija</a></li>
-				<li><a href="contact.html" class="item">Contact</a></li>
-				<li><a href="index.html" class="item">News</a></li>
-				<li><a href="partners.html" class="item">Partners</a></li>
-				<li><a href="tableview.html" class="item">Table View</a></li>
-				<li><a href="#" class="item" onmouseover="OtvoriMeni('sub-menu')">Podaci o poslovnicama</a>
+				<li><a onclick="goTo('index.html')"><img class="logo" src="img/logoo.png" alt="#"></a></li>
+				<li><a onclick="goTo('index.html')" class="agency-name">Air Express</a></li>
+				<li><a onclick="goTo('register.html')" class="registracija">Registracija</a></li>
+				<li><a onclick="goTo('contact.html')" class="item">Contact</a></li>
+				<li><a onclick="goTo('index.html')" class="item">News</a></li>
+				<li><a onclick="goTo('partners.html')" class="item">Partners</a></li>
+				<li><a onclick="goTo('tableview.html')" class="item">Table View</a></li>
+				<li><a class="item" onmouseover="OtvoriMeni('sub-menu')">Podaci o poslovnicama</a>
 					<ul id="sub-menu" 
 						onmouseover="DrziOtvoren()"
 						onmouseout="ZatvoriMeni()">

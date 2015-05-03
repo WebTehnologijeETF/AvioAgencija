@@ -256,8 +256,20 @@ footer{
 #username, #userNameErrorProvider, #contentC, 
 #email, #emailErrorProvider, #emailC, #emailErrorProviderC,
 #sifra, #sifraErrorProvider, #urlC, #urlErrorProviderC,
-#potvrdiSifru, #potvrdiSifruErrorProvider, #telC, #telErrorProviderC{
+#potvrdiSifru, #potvrdiSifruErrorProvider, #telC, #telErrorProviderC,
+#idHotela, #nazivHotela, #urlHotela, #cijenaHotela, 
+#idHotelaErrorProvider, #nazivHotelaErrorProvider, #urlHotelaErrorProvider, 
+#cijenaHotelaErrorProvider, #opisHotela, #opisHotelaErrorProvider,
+#pbrC, #gradC, #pbrErrorProviderC, #gradErrorProviderC{
 	float:left;
 }	
 
-
+.hotelButton{
+	width:180px;
+	background:rgb(30, 81, 128);
+	border:0;
+	color:#fff;
+	padding:5px;
+	border-radius:2px;	
+	float:right;
+}

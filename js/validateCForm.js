@@ -1,9 +1,12 @@
 var imePrezimeTb = document.getElementById("imePrezimeC");
 var emailTb = document.getElementById("emailC");
+var pbrTb = document.getElementById("pbrC");
+var gradTb = document.getElementById("gradC");
 var urlTb = document.getElementById("urlC");
 var telTb = document.getElementById("telC");
 var contentTb = document.getElementById("contentC");
 var button = document.getElementById("posaljiC");
+var formSubmit = document.getElementById("formSubmit");
 
 //imePrezimeTb.removeEventListener("onblur");
 //emailTb.removeEventListener("onblur");
@@ -100,11 +103,64 @@ emailTb.addEventListener("blur", function(){
 		}
 	}
 	else{
-		addAlert("emailErrorProvider", 'img/brisanje.png', 'Morate ispuniti ovo polje');
+		addAlert("emailErrorProviderC", 'img/brisanje.png', 'Morate ispuniti ovo polje');
 		emailTb.style.backgroundColor="white";
 	}
 	provjeriValidaciju();
 });
+
+var provjeraPodataka = function(){
+	ajaxValidacija();
+	
+	/*if(document.getElementById("pbrErrorProviderC").innerHTML==="greska"){
+		addAlert('pbrErrorProviderC', 'img/brisanje.png', 'Postanski broj ne odgovara mjestu');
+		pbrTb.focus();
+		return false;
+	}
+	else{
+		addAlert('pbrErrorProviderC', 'img/zad_ok.png', "Postanski broj odgovara mjestu");
+		return true;
+	}*/
+}
+
+var ajaxValidacija = function(){
+	var postanskiBroj = pbrTb.value;
+	var grad = gradTb.value;
+
+	var xhr = new XMLHttpRequest();
+	
+	xhr.onreadystatechange=function(){
+        var jsonParse=JSON.parse(xhr.responseText);
+
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            if (jsonParse.hasOwnProperty("greska")) {
+            	if(jsonParse["greska"]==="Nepostojeće mjesto"){
+                	document.getElementById("pbrErrorProviderC").innerHTML="greska";
+                	addAlert('pbrErrorProviderC', 'img/brisanje.png', 'Postanski broj ne odgovara mjestu');
+					pbrTb.focus();
+            	}
+            	else if(jsonParse["greska"]==="Nepostojeći poštanski broj"){
+	                document.getElementById("pbrErrorProviderC").innerHTML="greska";
+	                addAlert('pbrErrorProviderC', 'img/brisanje.png', 'Postanski broj ne odgovara mjestu');
+					pbrTb.focus();
+	            }
+	            else if(jsonParse["greska"]==="Poštanski broj ne odgovara mjestu"){
+	                document.getElementById("pbrErrorProviderC").innerHTML="greska";
+	                addAlert('pbrErrorProviderC', 'img/brisanje.png', 'Postanski broj ne odgovara mjestu');
+					pbrTb.focus();
+	            }
+                
+            } 
+            else {
+                document.getElementById("pbrErrorProviderC").innerHTML="ok";
+				addAlert('pbrErrorProviderC', 'img/zad_ok.png', "Postanski broj odgovara mjestu");
+                document.getElementById("formSubmit").submit();
+            }
+        }
+    }
+	xhr.open("GET", "http://zamger.etf.unsa.ba/wt/postanskiBroj.php?mjesto="+grad+"&postanskiBroj="+postanskiBroj, true);
+	xhr.send();
+}
 
 urlTb.addEventListener("blur", function(){
 	var url=urlTb.value;

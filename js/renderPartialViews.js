@@ -13,19 +13,19 @@ function loadNews()
 
   xmlhttp.onreadystatechange=function()
   {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-  {
-    document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
-    var body=document.getElementsByTagName("body")[0];
-    var counter=document.getElementById("injectScript");
-    if(counter!==null){
-      body.removeChild(counter);
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
     }
   }
-}
-xmlhttp.open("GET","index2.html",true);
-xmlhttp.send();
+  xmlhttp.open("GET","news.html",true);
+  xmlhttp.send();
 }
 
 function loadTable()
@@ -43,19 +43,19 @@ function loadTable()
 
   xmlhttp.onreadystatechange=function()
   {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-  {
-    document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
-    var body=document.getElementsByTagName("body")[0];
-    var counter=document.getElementById("injectScript");
-    if(counter!==null){
-      body.removeChild(counter);
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
     }
   }
-}
-xmlhttp.open("GET","tableview2.html",true);
-xmlhttp.send();
+  xmlhttp.open("GET","tableview2.html",true);
+  xmlhttp.send();
 }
 
 function loadPartners()
@@ -73,19 +73,19 @@ function loadPartners()
 
   xmlhttp.onreadystatechange=function()
   {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-  {
-    document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
-    var body=document.getElementsByTagName("body")[0];
-    var counter=document.getElementById("injectScript");
-    if(counter!==null){
-      body.removeChild(counter);
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
     }
   }
-}
-xmlhttp.open("GET","partners2.html",true);
-xmlhttp.send();
+  xmlhttp.open("GET","partners2.html",true);
+  xmlhttp.send();
 }
 
 function loadRegisterForm()
@@ -103,24 +103,24 @@ function loadRegisterForm()
 
   xmlhttp.onreadystatechange=function()
   {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-  {
-    document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
-    var body=document.getElementsByTagName("body")[0];
-    var counter=document.getElementById("injectScript");
-    if(counter!==null){
-      body.removeChild(counter);
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
+      var scriptToInject=document.createElement("script");
+      scriptToInject.setAttribute("id", "injectScript");
+      scriptToInject.setAttribute("src", "js/validateRegistration.js");
+      body.appendChild(scriptToInject);
+      
     }
-    var scriptToInject=document.createElement("script");
-    scriptToInject.setAttribute("id", "injectScript");
-    scriptToInject.setAttribute("src", "js/validateRegistration.js");
-    body.appendChild(scriptToInject);
-    
   }
-}
-xmlhttp.open("GET","register2.html",true);
-xmlhttp.send();
+  xmlhttp.open("GET","register2.html",true);
+  xmlhttp.send();
 }
 
 function loadContactForm()
@@ -138,22 +138,70 @@ function loadContactForm()
 
   xmlhttp.onreadystatechange=function()
   {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-  {
-    document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
-    var body=document.getElementsByTagName("body")[0];
-    var counter=document.getElementById("injectScript");
-    if(counter!==null){
-      body.removeChild(counter);
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
+      var scriptToInject=document.createElement("script");
+      scriptToInject.setAttribute("id", "injectScript");
+      scriptToInject.setAttribute("src", "js/validateCForm.js");
+      body.appendChild(scriptToInject);
+      
     }
-    var scriptToInject=document.createElement("script");
-    scriptToInject.setAttribute("id", "injectScript");
-    scriptToInject.setAttribute("src", "js/validateCForm.js");
-    body.appendChild(scriptToInject);
-    
   }
+  xmlhttp.open("GET","contact2.html",true);
+  xmlhttp.send();
 }
-xmlhttp.open("GET","contact2.html",true);
-xmlhttp.send();
+
+function loadHotels()
+{
+  var xmlhttp;
+
+  if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {// code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
+      var scriptToInject=document.createElement("script");
+      scriptToInject.setAttribute("id", "injectScript");
+      scriptToInject.setAttribute("src", "js/hotels.js");
+      body.appendChild(scriptToInject);
+    }
+  }
+  xmlhttp.open("GET","hotels2.html",true);
+  xmlhttp.send();
+}
+
+function goTo(url)
+{
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange=function(){
+    if(xhr.readyState==4 && xhr.status==200){
+      document.open();
+      document.write(xhr.responseText);
+      document.close();
+    }
+  }
+  xhr.open("GET",url,true);
+  xhr.send();
 }
