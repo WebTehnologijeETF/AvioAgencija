@@ -12,7 +12,7 @@ button.disabled= true;
 button.style.backgroundColor="grey";
 
 window.onload = function() {
-	//loadAllHotels();
+	loadAllHotels();
 }
 
 function loadAllHotels(){
@@ -20,19 +20,23 @@ function loadAllHotels(){
 
 	xhr.onreadystatechange=function(event)
 	{
-		if(xmlhttp.status === 200 & xmlhttp.readyState === 4) 
+		if(xhr.status === 200 & xhr.readyState === 4) 
 		{
 			var hoteli = JSON.parse(xhr.responseText);
 			fillHotelsList(hoteli);
 			event.preventDefault();
 		}
 	}
-	xmlhttp.open("GET","http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
-	xmlhttp.send();
+	xhr.open("GET","http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
+	xhr.send();
 }
 
 function fillHotelsList(hoteli)
 {
+	var myNode = document.getElementById("sadrzaj-novosti");
+	while (myNode.firstChild) {
+	    myNode.removeChild(myNode.firstChild);
+	}
 	for (var i = 0; i<hoteli.length; i++)
 	{
 		createElements();
@@ -56,18 +60,20 @@ function createHotel(){
 
 	if (document.getElementsByClassName("OK").length === 3){
 		var xhr=new XMLHttpRequest();
-		xhr.onreadystatechange=function(){
+		xhr.onreadystatechange=function(event){
 	 		if(xhr.status === 200 & xhr.readyState === 4) {
 	 			alert("Bravo!");
 	   			loadAllHotels();
 	   			//event.preventDefault();
 	  		}
+	  		event.preventDefault();
 	 	}
 		
 		xhr.open("POST", "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
-		xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+		//xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send("akcija=dodavanje" + "&brindexa=16260&proizvod=" + JSON.stringify(hotel));
+
 	}
 }
 
