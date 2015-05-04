@@ -134,19 +134,16 @@ function deleteHotel(idHotela){
 	var hotel = {
 		id: idHotela
 	};
-
-	if(document.getElementsByClassName("OK").length === 3) {
-		var xhr=new XMLHttpRequest();
-		xhr.onreadystatechange=function(){
-	 		if(xhr.status === 200 & xhr.readyState === 4) {
-	   			loadAllHotels();
-	  		}
-	 	}
-		
-		xhr.open("POST", "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send("akcija=brisanje" + "&brindexa=16260&proizvod=" + JSON.stringify(hotel));
-	}
+	var xhr=new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+ 		if(xhr.status === 200 & xhr.readyState === 4) {
+   			loadAllHotels();
+  		}
+ 	}
+	
+	xhr.open("POST", "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send("akcija=brisanje" + "&brindexa=16260&proizvod=" + JSON.stringify(hotel));
 }
 
 function createElements()
