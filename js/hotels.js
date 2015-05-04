@@ -62,15 +62,7 @@ function createHotel(){
 		xhr.onreadystatechange=function(){
 	 		if(xhr.status === 200 & xhr.readyState === 4) {
 	 			alert("Bravo!");
-	 			forma.nazivHotela.value="";
-	 			forma.opisHotela.value="";
-	 			forma.urlHotela.value="";
-				removeErrorProviders("urlHotelaErrorProvider");
-				removeErrorProviders("nazivHotelaErrorProvider");
-				removeErrorProviders("opisHotelaErrorProvider");
-				opisHotelaTb.style.backgroundColor="white";
-				nazivTb.style.backgroundColor="white";
-				urlSlikeTb.style.backgroundColor="white";
+	 			cleanFields();
 	   			loadAllHotels();
 	  		}
 	 	}
@@ -108,17 +100,9 @@ function updateHotel(){
 	 		if(xhr.status === 200 & xhr.readyState === 4) {
 	 			alert("Bravo!");	
 	 			forma.idHotela.value="";
-	 			forma.nazivHotela.value="";
-	 			forma.opisHotela.value="";
-	 			forma.urlHotela.value="";
+	 			cleanFields();
 	   			button2.style.display="none";
 				button.style.display="block";
-				removeErrorProviders("urlHotelaErrorProvider");
-				removeErrorProviders("nazivHotelaErrorProvider");
-				removeErrorProviders("opisHotelaErrorProvider");
-				opisHotelaTb.style.backgroundColor="white";
-				nazivTb.style.backgroundColor="white";
-				urlSlikeTb.style.backgroundColor="white";
 	   			loadAllHotels();
 	  		}
 	 	}
@@ -182,6 +166,19 @@ function createElements()
 	novostSadrzaj.appendChild(paragraf);
 	novostSadrzaj.appendChild(promijeni);
 	novostSadrzaj.appendChild(obrisi);
+}
+
+function cleanFields(){
+	var forma = document.getElementsByClassName("register-form")[0];
+	forma.nazivHotela.value="";
+	forma.opisHotela.value="";
+	forma.urlHotela.value="";
+	removeErrorProviders("urlHotelaErrorProvider");
+	removeErrorProviders("nazivHotelaErrorProvider");
+	removeErrorProviders("opisHotelaErrorProvider");
+	opisHotelaTb.style.backgroundColor="white";
+	nazivTb.style.backgroundColor="white";
+	urlSlikeTb.style.backgroundColor="white";
 }
 
 function removeErrorProviders(id){
