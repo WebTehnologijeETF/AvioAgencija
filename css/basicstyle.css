@@ -215,6 +215,10 @@ footer{
 
 	min-height: 500px;
 }
+
+.ajax-forma{
+	min-height: 300px;
+}
 #corendon{
  	list-style-image: url("corendon.jpg");
 }

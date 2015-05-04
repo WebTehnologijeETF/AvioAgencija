@@ -13,9 +13,7 @@ button.disabled= true;
 button.style.backgroundColor="grey";
 button2.style.display="none";
 
-window.onload = function() {
-	loadAllHotels();
-}
+loadAllHotels();
 
 function loadAllHotels(){
 	xhr=new XMLHttpRequest();
@@ -67,6 +65,12 @@ function createHotel(){
 	 			forma.nazivHotela.value="";
 	 			forma.opisHotela.value="";
 	 			forma.urlHotela.value="";
+				removeErrorProviders("urlHotelaErrorProvider");
+				removeErrorProviders("nazivHotelaErrorProvider");
+				removeErrorProviders("opisHotelaErrorProvider");
+				opisHotelaTb.style.backgroundColor="white";
+				nazivTb.style.backgroundColor="white";
+				urlSlikeTb.style.backgroundColor="white";
 	   			loadAllHotels();
 	  		}
 	 	}
@@ -85,6 +89,7 @@ function setUpdateHotel(idHotela){
 
 	button.style.display="none";
 	button2.style.display="block";
+	window.scrollTo(0, 0);
 }
 
 function updateHotel(){
@@ -102,12 +107,19 @@ function updateHotel(){
 		xhr.onreadystatechange=function(){
 	 		if(xhr.status === 200 & xhr.readyState === 4) {
 	 			alert("Bravo!");	
+	 			forma.idHotela.value="";
 	 			forma.nazivHotela.value="";
 	 			forma.opisHotela.value="";
 	 			forma.urlHotela.value="";
-	   			loadAllHotels();
 	   			button2.style.display="none";
 				button.style.display="block";
+				removeErrorProviders("urlHotelaErrorProvider");
+				removeErrorProviders("nazivHotelaErrorProvider");
+				removeErrorProviders("opisHotelaErrorProvider");
+				opisHotelaTb.style.backgroundColor="white";
+				nazivTb.style.backgroundColor="white";
+				urlSlikeTb.style.backgroundColor="white";
+	   			loadAllHotels();
 	  		}
 	 	}
 		
@@ -167,12 +179,22 @@ function createElements()
 	novostHead.appendChild(novostNaslov);
 	novostNaslov.appendChild(naslov);
 	novost.appendChild(novostBody);
-	novostBody.appendChild(novostSlika);
+	novostBody.appendChild(novostSlika); 
 	novostBody.appendChild(novostSadrzaj);
 	novostSlika.appendChild(slika);
 	novostSadrzaj.appendChild(paragraf);
 	novostSadrzaj.appendChild(promijeni);
 	novostSadrzaj.appendChild(obrisi);
+}
+
+function removeErrorProviders(id){
+	var div = document.getElementById(id);
+    if(div.childNodes[1]!==undefined){
+    	if(div.childNodes[2]!==undefined){
+    		div.removeChild(div.childNodes[2]);
+    	}
+    	div.removeChild(div.childNodes[1]);
+    }
 }
 
 function addAlert(id, url, error) {
