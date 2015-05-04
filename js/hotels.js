@@ -33,12 +33,15 @@ function loadAllHotels(){
 
 function fillHotelsList(hoteli)
 {
-	for (var i = 0; i<hoteli.length; i++){
+	for (var i = 0; i<hoteli.length; i++)
+	{
 		createElements();
 		slika.setAttribute("src", hoteli[i].url);
 		slika.setAttribute("alt", "#");
 		naslov.innerHTML=hoteli[i].naziv;
 		paragraf.innerHTML=hoteli[i].opis;
+		obrisi.setAttribute("onclick", "deleteHotel('"+hoteli[i].id+"')");
+		promijeni.setAttribute("onclick", "updateHotel('"+hoteli[i].id+"')");
 	}
 }
 
@@ -46,9 +49,9 @@ function createHotel(){
 	var forma = document.getElementsByClassName("register-form")[0];
 	
 	var hotel = {
-		naziv: forma.nazivHotela.value,
-		opis: forma.opisHotela.value,
-		url: "www.avioexpress.ba"
+		naziv: forma.nazivHotela.value
+		//opis: forma.opisHotela.value,
+		//url: "www.avioexpress.ba"
 	}; 
 
 	if (document.getElementsByClassName("OK").length === 3){
@@ -62,16 +65,17 @@ function createHotel(){
 	 	}
 		
 		xhr.open("POST", "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
+		xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send("akcija=dodavanje" + "&brindexa=16260&proizvod=" + JSON.stringify(hotel));
 	}
 }
 
-function updateHotel(){
+function updateHotel(idHotela){
 	var forma = document.getElementsByClassName("register-form")[0];
 	
 	var hotel = {
-		id: forma.idHotela.value,
+		id: idHotela,
 		naziv: forma.nazivHotela.value,
 		opis: forma.opisHotela.value,
 		url: "www.avioexpress.ba"
@@ -93,10 +97,10 @@ function updateHotel(){
 	}
 }
 
-function deleteHotel(){
+function deleteHotel(idHotela){
 	var forma = document.getElementsByClassName("register-form")[0];
 	var hotel = {
-		id: forma.idHotela.value
+		id: idHotela
 	};
 
 	if(document.getElementsByClassName("OK").length === 3) {
@@ -138,9 +142,7 @@ function createElements()
 	slika.setAttribute("src", "img/coding-future.jpg");
 	slika.setAttribute("alt", "#");
 	obrisi.setAttribute("class", "hotelButton");
-	obrisi.setAttribute("onclick", "deleteHotel('this.id')");
 	promijeni.setAttribute("class", "hotelButton");
-	promijeni.setAttribute("onclick", "updateHotel('this.id')");
 	obrisi.innerHTML="Obriši";
 	promijeni.innerHTML="Promijeni";
 
