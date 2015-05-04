@@ -7,9 +7,11 @@ var nazivTb = document.getElementById("nazivHotela");
 var opisHotelaTb = document.getElementById("opisHotela");
 var urlSlikeTb = document.getElementById("urlHotela");
 var button = document.getElementById("registrujHotel");
+var button2 = document.getElementById("promijeniHotel");
 
 button.disabled= true;
 button.style.backgroundColor="grey";
+button2.style.display="none";
 
 window.onload = function() {
 	loadAllHotels();
@@ -40,12 +42,11 @@ function fillHotelsList(hoteli)
 	for (var i = 0; i<hoteli.length; i++)
 	{
 		createElements();
-		slika.setAttribute("src", hoteli[i].url);
-		slika.setAttribute("alt", "#");
+		slika.setAttribute("src", hoteli[i].slika);
 		naslov.innerHTML=hoteli[i].naziv;
 		paragraf.innerHTML=hoteli[i].opis;
 		obrisi.setAttribute("onclick", "deleteHotel('"+hoteli[i].id+"')");
-		promijeni.setAttribute("onclick", "updateHotel('"+hoteli[i].id+"')");
+		promijeni.setAttribute("onclick", "setUpdateHotel('"+hoteli[i].id+"')");
 	}
 }
 
@@ -53,38 +54,9 @@ function createHotel(){
 	var forma = document.getElementsByClassName("register-form")[0];
 	
 	var hotel = {
-		naziv: forma.nazivHotela.value
-		//opis: forma.opisHotela.value,
-		//url: "www.avioexpress.ba"
-	}; 
-
-	if (document.getElementsByClassName("OK").length === 3){
-		var xhr=new XMLHttpRequest();
-		xhr.onreadystatechange=function(event){
-	 		if(xhr.status === 200 & xhr.readyState === 4) {
-	 			alert("Bravo!");
-	   			loadAllHotels();
-	   			//event.preventDefault();
-	  		}
-	  		event.preventDefault();
-	 	}
-		
-		xhr.open("POST", "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
-		//xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		xhr.send("akcija=dodavanje" + "&brindexa=16260&proizvod=" + JSON.stringify(hotel));
-
-	}
-}
-
-function updateHotel(idHotela){
-	var forma = document.getElementsByClassName("register-form")[0];
-	
-	var hotel = {
-		id: idHotela,
 		naziv: forma.nazivHotela.value,
 		opis: forma.opisHotela.value,
-		url: "www.avioexpress.ba"
+		slika: forma.urlHotela.value
 	}; 
 
 	if (document.getElementsByClassName("OK").length === 3){
@@ -92,8 +64,50 @@ function updateHotel(idHotela){
 		xhr.onreadystatechange=function(){
 	 		if(xhr.status === 200 & xhr.readyState === 4) {
 	 			alert("Bravo!");
+	 			forma.nazivHotela.value="";
+	 			forma.opisHotela.value="";
+	 			forma.urlHotela.value="";
 	   			loadAllHotels();
-	   			//event.preventDefault();
+	  		}
+	 	}
+		
+		xhr.open("POST", "http://zamger.etf.unsa.ba/wt/proizvodi.php?brindexa=16260", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send("akcija=dodavanje" + "&brindexa=16260&proizvod=" + JSON.stringify(hotel));
+
+	}
+}
+
+function setUpdateHotel(idHotela){
+	var forma = document.getElementsByClassName("register-form")[0];
+	
+	forma.idHotela.value=idHotela;
+
+	button.style.display="none";
+	button2.style.display="block";
+}
+
+function updateHotel(){
+	var forma = document.getElementsByClassName("register-form")[0];
+	
+	var hotel = {
+		id: forma.idHotela.value,
+		naziv: forma.nazivHotela.value,
+		opis: forma.opisHotela.value,
+		slika: forma.urlHotela.value
+	}; 
+
+	if (document.getElementsByClassName("OK").length === 3){
+		var xhr=new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+	 		if(xhr.status === 200 & xhr.readyState === 4) {
+	 			alert("Bravo!");	
+	 			forma.nazivHotela.value="";
+	 			forma.opisHotela.value="";
+	 			forma.urlHotela.value="";
+	   			loadAllHotels();
+	   			button2.style.display="none";
+				button.style.display="block";
 	  		}
 	 	}
 		
@@ -113,9 +127,7 @@ function deleteHotel(idHotela){
 		var xhr=new XMLHttpRequest();
 		xhr.onreadystatechange=function(){
 	 		if(xhr.status === 200 & xhr.readyState === 4) {
-	 			alert("Bravo!");
 	   			loadAllHotels();
-	   			//event.preventDefault();
 	  		}
 	 	}
 		
@@ -145,8 +157,6 @@ function createElements()
 	novostBody.setAttribute("class", "novost-body");
 	novostSadrzaj.setAttribute("class" ,"novost-sadrzaj");
 	novostSlika.setAttribute("class", "novost-slika");
-	slika.setAttribute("src", "img/coding-future.jpg");
-	slika.setAttribute("alt", "#");
 	obrisi.setAttribute("class", "hotelButton");
 	promijeni.setAttribute("class", "hotelButton");
 	obrisi.innerHTML="Obriši";
