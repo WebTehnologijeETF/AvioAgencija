@@ -14,6 +14,7 @@
 					header("location: ../index.html?stranica=kontakt&greska=Nedostaju parametri!");
 				}
 				else {
+					$imePrezime = $_POST['imePrezime'];
 					$email = $_POST['email'];
 					$sadrzaj = $_POST['sadrzaj'];
 
@@ -29,7 +30,7 @@
                         $message = nl2br($message);
 
 			          	$eol = PHP_EOL;
-			          	$from = "noreply@webtehnologije.ba";
+			          	$from = $email;
 			          	$subject = "Kontakt forma message";
 
 			          	/*komentar*/
@@ -40,6 +41,7 @@
 			          	$headers  = "From: ".$from.$eol;
 			          	$headers .= "Reply-To: ".$from.$eol;
 			          	$headers .= "MIME-Version: 1.0".$eol;
+			          	$headers .= "Cc: vljubovic@etf.unsa.ba".$eol;
 			          	$headers .= "Content-Type: multipart/mixed; boundary=\"".$separator."\"".$eol.$eol;
 			          	$headers .= "Content-Transfer-Encoding: 7bit".$eol;
 			          	$headers .= "This is a MIME encoded message.".$eol.$eol;
