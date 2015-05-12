@@ -15,6 +15,8 @@ function loadNews()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
       document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
       var body=document.getElementsByTagName("body")[0];
@@ -45,6 +47,8 @@ function loadTable()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
       document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
       var body=document.getElementsByTagName("body")[0];
@@ -75,6 +79,8 @@ function loadPartners()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
       document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
       var body=document.getElementsByTagName("body")[0];
@@ -105,6 +111,8 @@ function loadRegisterForm()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
       document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
       var body=document.getElementsByTagName("body")[0];
@@ -140,6 +148,8 @@ function loadContactForm()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
       document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
       var body=document.getElementsByTagName("body")[0];
@@ -175,6 +185,8 @@ function loadHotels()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
       document.getElementById("injectView").innerHTML=xmlhttp.responseText;
 
       var body=document.getElementsByTagName("body")[0];

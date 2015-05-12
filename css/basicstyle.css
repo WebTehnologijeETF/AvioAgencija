@@ -71,7 +71,7 @@
 .logo{
 	display: inline;
 	float:left;
-	padding-left: 50px;
+	padding-left: 0px;
 }
 
 #menu .item:hover{
