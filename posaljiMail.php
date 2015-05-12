@@ -7,6 +7,8 @@
 	</HEAD>
 	<BODY> 
 		<?php
+			ini_set('display_errors', 'On');
+			error_reporting(E_ALL);
 			if($_POST) {
 				if(!isset($_POST['email']) || !isset($_POST['sadrzaj'])) {
 					header("location: ../index.html?stranica=kontakt&greska=Nedostaju parametri!");
@@ -30,6 +32,8 @@
 			          	$from = "noreply@webtehnologije.ba";
 			          	$subject = "Kontakt forma message";
 
+			          	/*komentar*/
+
 			          	$separator = md5(time());
 
 			          	// glavni headeri
@@ -47,7 +51,7 @@
 			          	$headers .= $message.$eol.$eol;		
 
 			          	// send message
-			          	mail("emir.dj93@gmail.com", $subject, "", $headers);
+			          	mail("emir.dj93@gmail.com ", $subject, "", $headers);
 			          	echo '<script>alert("Sent!");</script>';
 					}
 				}
