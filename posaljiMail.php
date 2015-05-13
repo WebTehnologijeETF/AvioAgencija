@@ -7,35 +7,62 @@
 	</HEAD>
 	<BODY> 
 		<?php
+			require('sendgrid-php/sendgrid-php.php');
 			ini_set('display_errors', 'On');
 			error_reporting(E_ALL);
 			if($_POST) {
 				if(!isset($_POST['email']) || !isset($_POST['sadrzaj'])) {
-					header("location: ../index.html?stranica=kontakt&greska=Nedostaju parametri!");
+					header("location: ../index.html?greska=Nedostaju parametri!");
 				}
 				else {
 					$imePrezime = $_POST['imePrezime'];
-					$email = $_POST['email'];
+					$emailAA = $_POST['email'];
 					$sadrzaj = $_POST['sadrzaj'];
 
-					if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-						header("location: ../index.html?stranica=kontakt&greska=Email nije validan");
+					if(!filter_var($emailAA, FILTER_VALIDATE_EMAIL)) {
+						header("location: ../index.html?greska=Email nije validan");
 					}
 					else if(strlen($sadrzaj) == 0) {
-						header("location: ../index.html?stranica=kontakt&greska=Poruka je prazna");
+						header("location: ../index.html?greska=Poruka je prazna");
 					}
 					else {
-						//send mail
-						$message = "Ime i prezime: ".$imePrezime."<br/>Email: ".$email."<br/><br/>".$sadrzaj;
-                        $message = nl2br($message);
+						$eol = PHP_EOL;
+						$message = "Ime i prezime: ".$imePrezime."\r\n"."Email: ".$emailAA."\r\n"."\r\n"."\r\n".$sadrzaj;
+                        
 
-			          	$eol = PHP_EOL;
+						$service_plan_id = "sendgrid_04e63"; // your OpenShift Service Plan ID
+						$account_info = json_decode(getenv($service_plan_id), true);
+
+						$sendgrid = new SendGrid($account_info['username'], $account_info['password']);
+						$email    = new SendGrid\Email();
+
+						$email->addTo("emir.dj93@gmail.com")
+							  ->addCc("vljubovic@etf.unsa.ba")
+						      ->setReplyTo($emailAA)
+						      ->setFrom($emailAA)
+						      ->setSubject("Kontakt forma message")
+						      ->setText($message);
+
+						try
+						{
+							$sendgrid->send($email);
+							echo '<script>alert("Mail uspješno poslan! Hvala što ste nas kontaktirali");</script>';
+							header("location: ../index.html")
+						}
+						catch (\SendGrid\Exception $e)
+						{
+							echo $e->getCode();
+						    foreach($e->getErrors() as $er) {
+						        echo $er;
+    						}
+						}
+			          	/*$eol = PHP_EOL;
 			          	$from = $email;
 			          	$subject = "Kontakt forma message";
 
 			          	/*komentar*/
 
-			          	$separator = md5(time());
+			          	/*$separator = md5(time());
 
 			          	// glavni headeri
 			          	$headers  = "From: ".$from.$eol;
@@ -53,8 +80,8 @@
 			          	$headers .= $message.$eol.$eol;		
 
 			          	// send message
-			          	mail("emir.dj93@gmail.com ", $subject, "", $headers);
-			          	echo '<script>alert("Sent!");</script>';
+			          	//mail("emir.dj93@gmail.com ", $subject, "", $headers);
+			          	*/
 					}
 				}
 			}
