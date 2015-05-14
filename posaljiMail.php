@@ -18,6 +18,10 @@
 					$imePrezime = $_POST['imePrezime'];
 					$emailAA = $_POST['email'];
 					$sadrzaj = $_POST['sadrzaj'];
+					$grad = $_POST['grad'];
+					$pbr = $_POST['pbr'];
+					$telefon = $_POST['telefon'];
+					$faceurl= $_POST['faceurl'];
 
 					if(!filter_var($emailAA, FILTER_VALIDATE_EMAIL)) {
 						header("location: ../index.html?greska=Email nije validan");
@@ -27,7 +31,7 @@
 					}
 					else {
 						$eol = PHP_EOL;
-						$message = "Ime i prezime: ".$imePrezime."\r\n"."Email: ".$emailAA."\r\n"."\r\n"."\r\n".$sadrzaj;
+						$message = "Ime i prezime: ".$imePrezime."\r\n"."Email: ".$emailAA."\r\n"."Grad: ".$grad."\r\n"."Poštanski broj: ".$pbr."\r\n"."Facebook URL: ".$faceurl."\r\n"."Telefon: ".$telefon."\r\n"."\r\n"."\r\n".$sadrzaj;
                         
 
 						$service_plan_id = "sendgrid_04e63"; // your OpenShift Service Plan ID
@@ -47,7 +51,7 @@
 						{
 							$sendgrid->send($email);
 							echo '<script>alert("Mail uspješno poslan! Hvala što ste nas kontaktirali");</script>';
-							header("location: ../index.html")
+							header("location: ../index.html");
 						}
 						catch (\SendGrid\Exception $e)
 						{

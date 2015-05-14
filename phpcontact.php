@@ -88,13 +88,13 @@ d<!DOCTYPE HTML>
 	            	$imgSadrzaj = "img/zad_ok.png";
 	            }
 
-	            $imePrezime = $_POST['imePrezime'];
-	            $email = $_POST['email'];
-	            $telefon = $_POST['telefon'];
-	            $faceUrl = $_POST['faceurl'];
-	            $sadrzaj = $_POST['sadrzaj'];
-	            $pbr = $_POST['pbr'];
-	            $grad = $_POST['grad'];
+	            $imePrezime = htmlspecialchars(trim($_POST['imePrezime']), ENT_QUOTES, 'UTF-8');
+	            $email = htmlspecialchars(trim($_POST['email']), ENT_QUOTES, 'UTF-8');
+	            $telefon = htmlspecialchars(trim($_POST['telefon']), ENT_QUOTES, 'UTF-8');
+	            $faceUrl = htmlspecialchars(trim($_POST['faceurl']), ENT_QUOTES, 'UTF-8');
+	            $sadrzaj = htmlspecialchars(trim($_POST['sadrzaj']), ENT_QUOTES, 'UTF-8');
+	            $pbr = htmlspecialchars(trim($_POST['pbr']), ENT_QUOTES, 'UTF-8');
+	            $grad = htmlspecialchars(trim($_POST['grad']), ENT_QUOTES, 'UTF-8');
         	} 
         	else
         	{
@@ -189,14 +189,16 @@ d<!DOCTYPE HTML>
 		            <br><br>
 
 		            <label for="pbrC" class="contact-label">Postanski Broj :</label>
-				    <input id="pbrC" type="text" name="pbr" class="contact-input" placeholder="Unesite općinu">
+				    <input id="pbrC" type="text" name="pbr" class="contact-input" placeholder="Unesite općinu"
+				    		value="<?php echo $pbr ?>">
 				    <div id="pbrErrorProviderC">
 				    	&nbsp;&nbsp;
 				    </div>
 				    <br><br>
 
 				    <label for="gradC" class="contact-label">Grad :</label>
-				    <input id="gradC" type="text" name="grad" class="contact-input" placeholder="Unesite grad">
+				    <input id="gradC" type="text" name="grad" class="contact-input" placeholder="Unesite grad"
+				    		value="<?php echo $grad ?>">
 				    <div id="gradErrorProviderC">
 				    	&nbsp;&nbsp;
 				    </div>
