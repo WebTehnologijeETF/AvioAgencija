@@ -6,10 +6,16 @@
 	$veza = new PDO("mysql:dbname=spirala5;host=localhost;charset=utf8", "s5user", "s5pass");
     $veza->exec("set names utf8");
     $rezultat = $veza->query("SELECT id, UNIX_TIMESTAMP(datum) datum2, naslov, autor, slika, sadrzaj, detaljno  
-    						    FROM novosti ORDER BY datum DESC");
+    						  FROM novosti ORDER BY datum DESC");
 
-    foreach($rezultat as $novost){
+
+    foreach($rezultat as $novost)
+    {
+    	$upit = $veza->prepare("SELECT count(*) FROM komentari WHERE novost=?");
+    	$upit->execute(array($novost['id']));
+    	$brojKomentara=$upit->fetchColumn();
     	$datum = date("d:m:Y (h:i)", $novost['datum2']);
+
 		echo '<div class="novost">
 				<div class="novost-head">
 					<div class="novost-datum">'.htmlspecialchars(trim($datum), ENT_QUOTES, 'UTF-8').'</div>
@@ -25,8 +31,14 @@
 						<p>'.trim($novost['sadrzaj']).'</p>';
 						if($novost['detaljno']!=null) 
 		echo           "<p class='detaljnije'>
-							<a href=\"#\" onclick=\"return loadFullNews('".htmlspecialchars(trim($datum), ENT_QUOTES, 'UTF-8')."','".htmlspecialchars(trim($novost['naslov']), ENT_QUOTES, 'UTF-8')."','".htmlspecialchars(trim($novost['autor']), ENT_QUOTES, 'UTF-8')."','".htmlspecialchars(trim($novost['slika']), ENT_QUOTES, 'UTF-8')."','".htmlspecialchars(trim($novost['sadrzaj']), ENT_QUOTES, 'UTF-8')."','".htmlspecialchars(trim($novost['detaljno']), ENT_QUOTES, 'UTF-8')."')\">
+							<a href=\"#\" onclick=\"return loadNewsComments('".$novost['id']."')\">
 								Detaljnije...
+							</a>
+						</p>";
+						else
+		echo 			"<p class= 'detaljnije'>
+							<a href=\"#\" onclick=\"return loadNewsComments('".$novost['id']."')\">	
+								".$brojKomentara." komentara
 							</a>
 						</p>";
 		echo		'</div>
@@ -34,6 +46,8 @@
 			</div>
 			<br>
 			';
+
+		
 	}
 ?>
 </div>
