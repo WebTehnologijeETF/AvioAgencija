@@ -59,7 +59,7 @@
 		                  <div>
 		                    <label>Autor:</label><br>
 		                    <input type='text' name='autorKomentara' placeholder='Unesite vase ime' style='width: 400px'>  
-		                  </div>
+		                  </div><br>
 		                  <div>
 		                    <label>Email:</label><br>
 		                    <input type='text' name='emailAutora' placeholder='Unesite vas email' style='width: 400px'>  
