@@ -10,13 +10,12 @@
 	}
 	$kolicinaNovosti=count($novosti);
 
-
 	for ($i=0; $i<$kolicinaNovosti; $i++)
 	{
 		for ($j=0; $j<$kolicinaNovosti-1-$i; $j++) {
 			$time1 = strtotime($novosti[$j][0]); $newformat1 = date('d-m-Y h:i:s',$time1);
 			$time2 = strtotime($novosti[$j+1][0]); $newformat2 = date('d-m-Y h:i:s',$time2);
-            if ($time2 < $time1) {
+            if ($time2 > $time1) {
                 $tmp=$novosti[$j];
                 $novosti[$j]=$novosti[$j+1];
                 $novosti[$j+1]=$tmp;
