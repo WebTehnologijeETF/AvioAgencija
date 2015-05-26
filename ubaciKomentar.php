@@ -20,6 +20,10 @@
           print "SQL greška: " . $greska[2];
           exit();
       }
+      else{
+        echo "<p class='info-small'>Uspjesno ste unijeli vaš komentar</p>";
+        echo "<p class='info-small'><a href='#' onclick=\"return loadNewsComments('".$novostId."')\">Nazad na novost</a></p>";
+      }
       //header("location: http://localhost/Tutorijal%208/t8z3.php");
   ?>
 

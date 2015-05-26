@@ -177,6 +177,12 @@ html {
 	text-align: center;
 }
 
+.info-small{
+	padding-left: 50px;
+	font-size: 18px;
+	text-align: center;
+}
+
 
 table {
 	position: relative;
