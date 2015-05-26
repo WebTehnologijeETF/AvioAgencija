@@ -95,7 +95,7 @@
 				<li><a href="#" onclick="loadNews()"><img class="logo" src="img/logoo.png" alt="#"></a></li>
 				<li><a href="#" onclick="loadNews()" class="agency-name">Air Express</a></li>
 				<li><a href="#" onclick="loadRegisterForm()" class="registracija">Registracija</a></li>
-				<li><a href="contact.html" class="item">Contact</a></li>
+				<li><a href="#" onclick="loadContactForm()" class="item">Contact</a></li>
 				<li><a href="#" onclick="loadNews()" class="item">News</a></li>
 				<li><a href="#" onclick="loadPartners()" class="item">Partners</a></li>
 				<li><a href="#" onclick="loadTable()" class="item">Table View</a></li>
