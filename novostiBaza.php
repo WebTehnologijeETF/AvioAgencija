@@ -8,7 +8,6 @@
     $rezultat = $veza->query("SELECT id, UNIX_TIMESTAMP(datum) datum2, naslov, autor, slika, sadrzaj, detaljno  
     						  FROM novosti ORDER BY datum DESC");
 
-
     foreach($rezultat as $novost)
     {
     	$upit = $veza->prepare("SELECT count(*) FROM komentari WHERE novost=?");
@@ -31,6 +30,9 @@
 						<p>'.trim($novost['sadrzaj']).'</p>';
 						if($novost['detaljno']!=null) 
 		echo           "<p class='detaljnije'>
+							<a class='komSaDet' href=\"#\" onclick=\"return loadNewsComments('".$novost['id']."')\">	
+								".$brojKomentara." komentara
+							</a>
 							<a href=\"#\" onclick=\"return loadNewsComments('".$novost['id']."')\">
 								Detaljnije...
 							</a>
