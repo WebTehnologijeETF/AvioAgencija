@@ -32,24 +32,22 @@ function loadNews()
       body.appendChild(scriptToInject);
     }
   }
-  xmlhttp.open("GET","novosti.php",true);
+  xmlhttp.open("GET","novostiBaza.php",true);
   xmlhttp.send();
 }
 
-function loadFullNews(datum, naslov, autor, slika, sadrzajNovosti, detaljnijeNovosti)
+function loadNewsComments(id)
 {
   var xmlhttp;
-
-
   if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  {
     xmlhttp=new XMLHttpRequest();
   }
   else
-  {// code for IE6, IE5
+  {
     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
-  var parametri = "date="+datum.toString()+"&heading="+naslov.toString()+"&newsAutor="+autor.toString()+"&img="+slika.toString()+"&contentNews="+sadrzajNovosti.toString()+"&detailNews="+detaljnijeNovosti.toString();
+  var parametri = "idNovosti="+id.toString();
   xmlhttp.onreadystatechange=function()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -65,7 +63,43 @@ function loadFullNews(datum, naslov, autor, slika, sadrzajNovosti, detaljnijeNov
       }
     }
   }
-  xmlhttp.open("POST","zasebnaNovost.php",true);
+  xmlhttp.open("POST","zasebnaNovostSaKom.php",true);
+  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send(parametri);
+}
+
+function insertComment(){
+  var forma = document.getElementById("komentarForma");
+  var novostId=forma.novostId.value;
+  var autorKomentara = forma.autorKomentara.value;
+  var tekstKomentara = forma.tekstKomentara.value;
+  var emailAutora = forma.emailAutora.value;
+  var xmlhttp;
+  if (window.XMLHttpRequest)
+  {
+    xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  var parametri = "idNovosti="+novostId+"&autor="+autorKomentara+"&tekst="+tekstKomentara+"&email="+emailAutora;
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
+    }
+  }
+  xmlhttp.open("POST","ubaciKomentar.php",true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send(parametri);
 }
