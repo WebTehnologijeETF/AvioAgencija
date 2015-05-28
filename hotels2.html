@@ -1,59 +1,46 @@
 <br><br><br><br>
-<div class="ajax-forma">   
-    <p class="info-small">Klikom na dugme "Promijeni" pored datog hotela, bit ćete vraćeni na vrh stranice i ID datog hotela će se nalaziti u polju "ID :"<p>
-    <p class="info-small">Popunite formu bez da mijenjate ID i kliknite na dugme "Promijeni" koje se nalazi ispod forme.<p>
-    <form class="register-form" method="post" enctype="multipart/form-data">
-        
-        <label for="idHotela" class="register-label">ID :</label>
-        <input id="idHotela" type="text" class="contact-input">
-        <div id="idHotelaErrorProvider">
-           &nbsp;&nbsp;
-        </div>
-        <br><br>
+<?php
+    session_start();
+    if(isset($_SESSION['username']))
 
-        <label for="nazivHotela" class="register-label">Naziv :</label>
-        <input id="nazivHotela" type="text"class="register-input">
-        <div id="nazivHotelaErrorProvider">
-           &nbsp;&nbsp;
-        </div>
-        <br><br>
+    echo    '<div class="ajax-forma">   
+                <p class="info-small">Klikom na dugme "Promijeni" pored datog hotela, bit ćete vraćeni na vrh stranice i ID datog hotela će se nalaziti u polju "ID :"<p>
+                <p class="info-small">Popunite formu bez da mijenjate ID i kliknite na dugme "Promijeni" koje se nalazi ispod forme.<p>
+                <form class="register-form" method="post" enctype="multipart/form-data">
+                    
+                    <label for="idHotela" class="register-label">ID :</label>
+                    <input id="idHotela" type="text" class="contact-input">
+                    <div id="idHotelaErrorProvider">
+                       &nbsp;&nbsp;
+                    </div>
+                    <br><br>
 
-        <label for="urlHotela" class="register-label">Url slike:</label>
-        <input id="urlHotela" type="text" class="register-input">
-        <div id="urlHotelaErrorProvider">
-            &nbsp;&nbsp;
-        </div>
-        <br><br>
+                    <label for="nazivHotela" class="register-label">Naziv :</label>
+                    <input id="nazivHotela" type="text"class="register-input">
+                    <div id="nazivHotelaErrorProvider">
+                       &nbsp;&nbsp;
+                    </div>
+                    <br><br>
 
-        <label for="opisHotela" class="register-label">Opis :</label>
-        <input id="opisHotela" type="text" class="register-input">
-        <div id="opisHotelaErrorProvider">
-           &nbsp;&nbsp;
-        </div>
-        <br><br>
-        <input id="registrujHotel" type="button" value="Dodaj" class="register-button" onclick="createHotel()">
-        <input id="promijeniHotel" type="button" value="Promijeni" class="register-button" onclick="updateHotel()">
-        <!--button id="registrujHotel" class="register-button" type="submit" onclick="createHotel()">Dodaj!</button-->
-    </form>
-</div>
+                    <label for="urlHotela" class="register-label">Url slike:</label>
+                    <input id="urlHotela" type="text" class="register-input">
+                    <div id="urlHotelaErrorProvider">
+                        &nbsp;&nbsp;
+                    </div>
+                    <br><br>
 
+                    <label for="opisHotela" class="register-label">Opis :</label>
+                    <input id="opisHotela" type="text" class="register-input">
+                    <div id="opisHotelaErrorProvider">
+                       &nbsp;&nbsp;
+                    </div>
+                    <br><br>
+                    <input id="registrujHotel" type="button" value="Dodaj" class="register-button" onclick="createHotel()">
+                    <input id="promijeniHotel" type="button" value="Promijeni" class="register-button" onclick="updateHotel()">
+                    <!--button id="registrujHotel" class="register-button" type="submit" onclick="createHotel()">Dodaj!</button-->
+                </form>
+            </div>';
+?>
 <div id="sadrzaj-novosti">
-    <!--div class="novost">
-        <div class="novost-head">
-            <div class="novost-naslov"> <h3>Hotel 1</h3> </div>
-        </div>
-        <div class="novost-body">
-            <div class = "novost-slika">
-                <img src="img/coding-future.jpg" alt="#">
-            </div>
-            <div class="novost-sadrzaj"> 
-                <p>                 
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat...
-                </p>
-                <button class="hotelButton">Obriši</button><button class="hotelButton">Promijeni</button>
-            </div>
-        </div>
-    </div--> 
+     
 </div>

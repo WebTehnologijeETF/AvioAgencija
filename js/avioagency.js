@@ -22,4 +22,4 @@ function Zatvori()
 function DrziOtvoren()
 {
 	window.clearTimeout(Timer);
-}
+}	

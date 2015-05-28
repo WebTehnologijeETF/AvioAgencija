@@ -47,7 +47,7 @@ function provjeriValidaciju() {
 
 var samoSlova = function(content){
 	for(i=0; i<content.length; i++){
-        if(content[i]===' ') continue;
+        if(content[i]===' ' || content[i]==='-' || content[i].toLowerCase()=='ć' || content[i].toLowerCase()=='č' || content[i].toLowerCase()=='š' || content[i].toLowerCase()=='ž' || content[i].toLowerCase()=='đ') continue;
 		if (content[i].toLowerCase()<'a' || content[i].toLowerCase()>'z'){
 			return false;
 		}
@@ -149,8 +149,8 @@ ponoviSifruTb.addEventListener("blur", function(){
 usernameTb.addEventListener("blur", function(){
 	var username = usernameTb.value;
 	if(username!==''){
-		if(username.length<6){
-			usernameb.style.backgroundColor="#FF8080";
+		if(username.length<5){
+			usernameTb.style.backgroundColor="#FF8080";
 			addAlert('usernameErrorProvider', 'img/brisanje.png', 'Username prekratak!')
 			usernameTb.focus();
 		}

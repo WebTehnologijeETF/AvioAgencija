@@ -1,6 +1,7 @@
 <br><br><br>
 <div id="sadrzaj-novosti">
 <?php
+	session_start();
 	$novostId=$_POST['idNovosti'];
 
 	$veza = new PDO("mysql:dbname=spirala5;host=localhost;charset=utf8", "s5user", "s5pass");
@@ -11,7 +12,7 @@
     						  ORDER BY datum2 desc");
     $novost->execute(array($novostId));
 
-    $komentari = $veza->prepare("SELECT autor, UNIX_TIMESTAMP(datum) datum2, email, tekst FROM komentari WHERE novost=? ORDER BY datum asc");
+    $komentari = $veza->prepare("SELECT id, autor, UNIX_TIMESTAMP(datum) datum2, email, tekst FROM komentari WHERE novost=? ORDER BY datum asc");
     $komentari->execute(array($novostId));
     
     $naslov=""; $autor=""; $datum=""; $slika=""; $sadrzajNovosti=""; $detaljnijeNovosti="";
@@ -48,31 +49,41 @@
 	echo 			'<div style="padding-left:30px; max-width:400px"><h4>Komentari:</h4>';
 					foreach($komentari as $komentar){
 						$komentarVrijeme=date("d:m:Y (h:i:s)", $komentar['datum2']);
-	echo 				"<small style='float:left'>".htmlentities($komentar['autor'], ENT_QUOTES)."</small><br>".
-						"<small style='float:left'>".htmlentities($komentar['email'], ENT_QUOTES)."</small>".
-              			"<small style='float:right; padding-right:1px'>".htmlentities($komentarVrijeme, ENT_QUOTES)."</small>".
-             			"<br><p>'".htmlspecialchars($komentar['tekst'], ENT_QUOTES)."'</p><br>";				
+						if($komentar['autor']!='Anonimus' && $komentar['email']!="")
+	echo 				"<small style='float:left'><a href='mailto:".$komentar['email']."'> ".htmlentities($komentar['autor'], ENT_QUOTES)."</a></small><br>";
+						else
+	echo  				"<small style='float:left'>".htmlentities($komentar['autor'], ENT_QUOTES)."</small><br>";
+	echo				"<small style='float:left'>".htmlentities($komentar['email'], ENT_QUOTES)."</small>";
+						if(isset($_SESSION['username']))
+	echo 					"<small style='float:right; padding-right:1px'><a href='#' onclick=\"deleteComment('".$komentar['id']."')\">Obriši komentar</a></small><br>";
+    echo          		"<small style='float:right; padding-right:1px; padding-bottom:10px'>".htmlentities($komentarVrijeme, ENT_QUOTES)."</small>".
+             			"<br><p>'".htmlspecialchars($komentar['tekst'], ENT_QUOTES)."'</p><br><br>";				
 					} 			
 		    
 	echo   			   "<h5>Dodaj komentar:</h5>
 		                <form id='komentarForma' method='POST' action='dodajKomentar.php'>
-		                  <div>
-		                    <label>Autor:</label><br>
-		                    <input type='text' name='autorKomentara' placeholder='Unesite vase ime' style='width: 400px'>  
-		                  </div><br>
-		                  <div>
-		                    <label>Email:</label><br>
-		                    <input type='text' name='emailAutora' placeholder='Unesite vas email' style='width: 400px'>  
-		                  </div>
-		                  <br>
+		                  
+		                  <label for='autorN'>Autor:</label><br>
+		                  <input id='autorN' type='text' name='autorKomentara' placeholder='Unesite vase ime' style='width: 400px'>  
+		                  
+		                  <br><br>
+		                  <label for='emailN'>Email:</label><br>
+		                  <input id='emailN' type='text' name='emailAutora' placeholder='Unesite vas email' style='width: 400px'>  
+		                  
+		                  <div id='emailErrorProviderN'>
+					       	&nbsp;&nbsp;
+					      </div>
+					      
+					      <br><br>
 		                  <input name='novostId' style='display: none' value='".$novostId."'>
-		                  <div>
-		                    <label>Komentar:</label><br>
-		                    <textarea name='tekstKomentara' rows='4' cols='55'></textarea>
-		                  </div>
-
+		                   
+		                  <label>Komentar:</label><br>
+		                  <textarea id='tekstN' name='tekstKomentara' rows='4' cols='55'></textarea>
+		                  <div id='tekstErrorProviderN'>
+					       	&nbsp;&nbsp;
+					      </div><br><br><br>
 		                  <br>
-		                  <input class = 'contact-button' type='button' value='Pošalji komentar' onclick=\"return insertComment()\">
+		                  <input id='registruj' class = 'contact-button' type='button' value='Pošalji komentar' onclick=\"return insertComment()\">
 		                </form>
 	                </div>
 	            </div>
