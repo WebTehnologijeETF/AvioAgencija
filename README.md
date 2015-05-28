@@ -5,6 +5,9 @@ Uzimajuci u obzir receno u tekstu iznad, stranica ce, znaci, posjedovati neki ad
 
 Pristupni podaci admin panelu:
 username: admin, sifra: password;
+
 username: kisle, sifra: nemasifre;
+
 username: zlaja, sifra: password;
+
 username: odofar, sifra: password;
