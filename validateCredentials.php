@@ -1,4 +1,4 @@
-<br><br><br>
+<br><br><br><br><br>
 <div>
 <?php 
       session_start();
@@ -13,10 +13,11 @@
         $konekcija->exec("set names utf8");
         $credentials = $konekcija->prepare("SELECT username, password, email, imePrezime FROM korisnici WHERE username=?");
         $credentials->execute(array($username));
-        $password=$credentials->fetchColumn(1);
-        $email=$credentials->fetchColumn(2);
-        $imePrezime=$credentials->fetchColumn(3);
-        
+        foreach($credentials as $parametar){
+          $password=$parametar['password'];
+          $email=$parametar['email'];
+          $imePrezime=$parametar['imePrezime'];
+        }
         if ($password==md5($_REQUEST['sifra'])){
            $_SESSION['username']=$username;
            $_SESSION['email']=$email;

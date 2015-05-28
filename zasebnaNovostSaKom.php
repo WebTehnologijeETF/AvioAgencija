@@ -49,7 +49,7 @@
 	echo 			'<div style="padding-left:30px; max-width:400px"><h4>Komentari:</h4>';
 					foreach($komentari as $komentar){
 						$komentarVrijeme=date("d:m:Y (h:i:s)", $komentar['datum2']);
-						if($komentar['autor']!='Anonimus' && $komentar['email']!="")
+						if($komentar['autor']!='Anonimus' && $komentar['email'])
 	echo 				"<small style='float:left'><a href='mailto:".$komentar['email']."'> ".htmlentities($komentar['autor'], ENT_QUOTES)."</a></small><br>";
 						else
 	echo  				"<small style='float:left'>".htmlentities($komentar['autor'], ENT_QUOTES)."</small><br>";
@@ -60,7 +60,7 @@
              			"<br><p>'".htmlspecialchars($komentar['tekst'], ENT_QUOTES)."'</p><br><br>";				
 					} 			
 		    
-	echo   			   "<h5>Dodaj komentar:</h5>
+	echo   			   "<h5>Dodaj komentar: (prođite kroz svako polje zbog validacije, na taj način će se i dugme aktivirati)</h5>
 		                <form id='komentarForma' method='POST' action='dodajKomentar.php'>
 		                  
 		                  <label for='autorN'>Autor:</label><br>

@@ -14,34 +14,31 @@
     $provjeraUsera->execute(array($username));
     $brojUsera = $provjeraUsera->fetchColumn();
 
-    if($brojUsera==0){
-
-	    if($_POST['idUsera']=="foo"){
+    if($_POST['idUsera']=="foo"){
+    	if($brojUsera==0){
 		    $rezultat = $veza->query("INSERT INTO korisnici (imePrezime, email, username, password) 
 		        VALUES ('".htmlspecialchars($imePrezime, ENT_QUOTES)."', '".htmlspecialchars($email, ENT_QUOTES)."', 
 		        		'".htmlspecialchars($username, ENT_QUOTES)."', '".htmlspecialchars($sifra, ENT_QUOTES)."') ");
 			echo "<p class='info-small'>Korisnik uspješno dodan.</p><br>";
+			echo "<p class='info-small'><a href='adminLogin.php'>Nazad na login</a></p>";
 		}
-
 		else{
-			$idUsera = $_POST['idUsera'];
-			$rezultat = $veza->prepare("UPDATE korisnici SET imePrezime='".htmlspecialchars($imePrezime, ENT_QUOTES)."', email='"
-										.htmlspecialchars($email, ENT_QUOTES)."', 
-										username='".htmlspecialchars($username, ENT_QUOTES)."', password='"
-										.htmlspecialchars($sifra, ENT_QUOTES)."' WHERE id=:userId");
-			$rezultat->bindValue(":userId", $idUsera, PDO::PARAM_INT);
-	    	$rezultat->execute();
-
-			echo "<p class='info-small'>Korisnik uspješno izmijenjen.</p><br>";
-		}
-		if(isset($_SESSION['username'])) echo "<p class='info-small'><a href='#' onclick=\"loadUsers()\">Nazad</a></p>";
-		else{
-			header("location: adminLogin.php");
+			echo "<p class='info-small'>Korisnik već postoji u bazi</p>";
+			echo "<p class='info-small'><a href='#' onclick='loadRegisterForm()'>Nazad na registraciju</a></p>";
+			if(isset($_SESSION['username'])){
+				echo "<p class='info-small'><a href='#' onclick=\"loadUsers()\">Nazad</a></p>";
+			}
 		}
 	}
 	else{
-		echo "<p class='info-small'>Korisnik već postoji u bazi</p>";
-		echo "<p class='info-small'><a href='#' onclick='loadRegisterForm()'>Nazad na registraciju</a></p>";
+		$idUsera = $_POST['idUsera'];
+		$rezultat = $veza->prepare("UPDATE korisnici SET imePrezime='".htmlspecialchars($imePrezime, ENT_QUOTES)."', email='"
+									.htmlspecialchars($email, ENT_QUOTES)."', 
+									username='".htmlspecialchars($username, ENT_QUOTES)."', password='"
+									.htmlspecialchars($sifra, ENT_QUOTES)."' WHERE id=:userId");
+		$rezultat->bindValue(":userId", $idUsera, PDO::PARAM_INT);
+    	$rezultat->execute();
+		echo "<p class='info-small'>Korisnik uspješno izmijenjen.</p><br>";
+		echo "<p class='info-small'><a href='#' onclick=\"loadUsers()\">Nazad</a></p>";
 	}
-
 ?>

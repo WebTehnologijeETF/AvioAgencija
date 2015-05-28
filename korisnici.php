@@ -1,7 +1,7 @@
 <br><br><br><br><br>
 <div>
 	<div class="putovanja">
-			<p class="info">Administratori:</p>
+			<p class="info">Administratori (vaši podaci nisu prikazani u tabeli):</p>
 			<table class="tabela">
 				<tr>
 					<th>ID</th>
