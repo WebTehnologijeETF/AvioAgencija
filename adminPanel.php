@@ -1,5 +1,6 @@
 <?php
     session_start();
+    if(!isset($_SESSION['username'])) header("location: adminLogin.php")
 ?>
 
 <!DOCTYPE HTML>
@@ -20,13 +21,13 @@
                     if(isset($_SESSION['username'])){
                         echo "<li><a href='logout.php' class='registracija'>Logout ".$_SESSION['username']."</a></li>";
                         echo "<li><a href='adminPanel.php' class='registracija'>Admin Panel</a></li>";
-                        echo "<li><a href='#' onclick='loadHotels()' class='item'>Hoteli</a></li>";
                     }
                     else
                         echo "<li><a href='adminLogin.php' class='registracija'>Login</a></li>";
                 ?>
                 <li><a href="#" onclick="loadUsers()" class="item">Korisnici</a></li>
-                <li><a href="#" onclick="loadNews()" class="item">Novosti</a></li>
+                <li><a href="#" onclick="loadNewsService()" class="item">Novosti</a></li>
+                <li><a href="#" onclick="loadHotels()" class="item">Hoteli</a></li>
                 <li><a href="#" class="item" onmouseover="OtvoriMeni('sub-menu')">Poslovnice</a>
                     <ul id="sub-menu" 
                         onmouseover="DrziOtvoren()"

@@ -26,9 +26,10 @@
                     else{
                         echo '<li><a href="#" onclick="loadPartners()" class="item">Partneri</a></li>
                               <li><a href="#" onclick="loadTable()" class="item">Letovi</a></li>';
+                        //echo '<li><a href="#" onclick="loadHotels()" class="item">Hoteli</a></li>';
                     }
                 ?>
-                <li><a href="#" onclick="loadNews()" class="item">Novosti</a></li>
+                <li><a href="#" onclick="loadNewsService()" class="item">Novosti</a></li>
                 <li><a href="#" class="item" onmouseover="OtvoriMeni('sub-menu')">Poslovnice</a>
                     <ul id="sub-menu" 
                         onmouseover="DrziOtvoren()"

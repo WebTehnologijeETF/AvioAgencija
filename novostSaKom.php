@@ -2,7 +2,7 @@
 <div id="sadrzaj-novosti">
 <?php
 	session_start();
-	/*$novostId=$_POST['idNovosti'];
+	$novostId=$_POST['idNovosti'];
 
 	$veza = new PDO("mysql:dbname=spirala5;host=localhost;charset=utf8", "s5user", "s5pass");
     $veza->exec("set names utf8");
@@ -88,6 +88,6 @@
 	                </div>
 	            </div>
 	        </div>
-	    </div>";*/
+	    </div>";
 ?>
 </div>

@@ -3,11 +3,9 @@
 <?php 
       session_start();
       if(isset($_SESSION['username'])){
-        echo "sta?";
         $username=$_SESSION['username'];
       }
       else if(isset($_REQUEST['username']) && isset($_REQUEST['sifra'])){
-        echo "kako?<br>";
         $username = $_REQUEST['username'];
         $konekcija = new PDO("mysql:dbname=spirala5;host=localhost;charset=utf8", "s5user", "s5pass");
         $konekcija->exec("set names utf8");

@@ -8,6 +8,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="css/basicstyle.css">
         <script type="text/javascript" src="js/renderPartialViews.js"></script>
+        <script type="text/javascript" src="js/komentari.js"></script>
 		<script type="text/javascript" src="js/avioagency.js"></script>
 	</HEAD>
 	<BODY> 
@@ -35,7 +36,7 @@
 					}
 
 				?>
-				<li><a href="#" onclick="loadNews()" class="item">Novosti</a></li>
+				<li><a href="#" onclick="loadNewsService()" class="item">Novosti</a></li>
 				<li><a href="#" class="item" onmouseover="OtvoriMeni('sub-menu')">Poslovnice</a>
 					<ul id="sub-menu" 
 						onmouseover="DrziOtvoren()"

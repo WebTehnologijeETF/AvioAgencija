@@ -109,7 +109,7 @@ d<!DOCTYPE HTML>
 				<li><a href="#" onclick="loadNews()" class="agency-name">Air Express</a></li>
 				<li><a href="#" onclick="loadRegisterForm()" class="registracija">Registracija</a></li>
 				<li><a href="contact.html" class="item">Contact</a></li>
-				<li><a href="#" onclick="loadNews()" class="item">News</a></li>
+				<li><a href="#" onclick="loadNewsService()" class="item">News</a></li>
 				<li><a href="#" onclick="loadPartners()" class="item">Partners</a></li>
 				<li><a href="#" onclick="loadTable()" class="item">Table View</a></li>
 				<li><a href="#" onclick="loadHotels()" class="item">Hoteli</a></li>

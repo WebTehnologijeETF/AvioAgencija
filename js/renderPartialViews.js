@@ -1,15 +1,8 @@
 function loadNews()
 {
   var xmlhttp;
-
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -38,14 +31,8 @@ function loadNews()
 
 function deleteNews(newsId){
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   var parametri = "idNovosti="+newsId.toString();
   xmlhttp.onreadystatechange=function()
   {
@@ -68,16 +55,18 @@ function deleteNews(newsId){
 }
 
 function editNews(newsId){
+  var xhr;
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
+  
+  if (window.XMLHttpRequest) {
     xmlhttp=new XMLHttpRequest();
+    xhr=new XMLHttpRequest();
   }
-  else
-  {
+  else {
     xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    xhr=new ActiveXObject("Microsoft.XMLHTTP");
   }
-  var parametri = "idNovosti="+newsId.toString();
+  var parametri = "id="+newsId.toString();
   xmlhttp.onreadystatechange=function()
   {
     if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -95,14 +84,32 @@ function editNews(newsId){
       scriptToInject.setAttribute("id", "injectScript");
       scriptToInject.setAttribute("src", "js/validateNews.js");
       body.appendChild(scriptToInject);
+
+      xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+          var data = JSON.parse(xhr.responseText);
+          var forma=document.getElementById("addNews");
+          console.log(data.length);
+          forma.idNovosti.value = newsId;
+          forma.autor.value=data.autor;
+          forma.naslov.value=data.naslov;
+          forma.slika.value=data.slika;
+          forma.sadrzaj.value=data.sadrzaj;
+          forma.detaljno.value=data.detaljno; 
+          
+        }
+      }
+      xhr.open("GET", "novostiServis.php?"+parametri, true);      
+      xhr.send();
     }
   }
-  xmlhttp.open("POST","editovanjeNovosti.php",true);
-  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xmlhttp.send(parametri);
+  
+  xmlhttp.open("GET","editovanjeNovosti.php",true);
+  //xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xmlhttp.send();
 }
 
-function createNews(){
+function createNews(promjena){
   var xmlhttp;
   if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
   else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
@@ -133,7 +140,8 @@ function createNews(){
       }
     }
   }
-  xmlhttp.open("POST","dodavanjeNovostiBaza.php",true);
+  if (promjena) xmlhttp.open("PUT","novostiServis.php",true); 
+  else xmlhttp.open("POST","novostiServis.php",true);
   xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xmlhttp.send(parametri);
 }
@@ -222,14 +230,8 @@ function loadPassGenerator(){
 
 function deleteComment(commentId){
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   var parametri = "idKomentara="+commentId.toString();
   xmlhttp.onreadystatechange=function()
   {
@@ -253,14 +255,8 @@ function deleteComment(commentId){
 
 function deleteAllComments(newsId){
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   var parametri = "idNovosti="+newsId.toString();
   xmlhttp.onreadystatechange=function()
   {
@@ -377,14 +373,8 @@ function editUser(userId){
 
 function deleteUser(userId){
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   var parametri = "idUsera="+userId.toString();
   xmlhttp.onreadystatechange=function()
   {
@@ -434,14 +424,8 @@ function loadUsers(){
 function loadNewsComments(id)
 {
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   var parametri = "idNovosti="+id.toString();
   xmlhttp.onreadystatechange=function()
   {
@@ -458,8 +442,22 @@ function loadNewsComments(id)
       }
       var scriptToInject=document.createElement("script");
       scriptToInject.setAttribute("id", "injectScript");
-      scriptToInject.setAttribute("src", "js/validateComment.js");
+      scriptToInject.setAttribute("src", "js/komentari.js");
       body.appendChild(scriptToInject);
+
+      ucitajNovostiKomentare(id);
+
+      /*var body2=document.getElementsByTagName("body")[0];
+      var counter2=document.getElementById("injectScript-two");
+      if(counter2!==null){
+        body2.removeChild(counter);
+      }
+      var scriptToInject2=document.createElement("script");
+      scriptToInject2.setAttribute("id", "injectScript-two");
+      scriptToInject2.setAttribute("src", "js/validateComment.js");
+      body2.appendChild(scriptToInject2);*/
+
+      
     }
   }
   xmlhttp.open("POST","zasebnaNovostSaKom.php",true);
@@ -474,14 +472,8 @@ function insertComment(){
   var tekstKomentara = forma.tekstKomentara.value;
   var emailAutora = forma.emailAutora.value;
   var xmlhttp;
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   var parametri = "idNovosti="+novostId+"&autor="+autorKomentara+"&tekst="+tekstKomentara+"&email="+emailAutora;
   xmlhttp.onreadystatechange=function()
   {
@@ -507,14 +499,8 @@ function loadTable()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -539,14 +525,8 @@ function loadWelcome()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -571,14 +551,8 @@ function loadAdminLogin()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -632,14 +606,8 @@ function loadPartners()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -664,14 +632,8 @@ function loadRegisterForm()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -711,14 +673,8 @@ function loadContactForm()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -748,14 +704,8 @@ function loadHotels()
 {
   var xmlhttp;
 
-  if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-  }
-  else
-  {// code for IE6, IE5
-    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 
   xmlhttp.onreadystatechange=function()
   {
@@ -777,11 +727,40 @@ function loadHotels()
       body.appendChild(scriptToInject);
     }
   }
-  xmlhttp.open("GET","hotels2.html",true);
+  xmlhttp.open("GET","hotels2.php",true);
   xmlhttp.send();
 }
 
+function loadNewsService()
+{
+  var xmlhttp;
 
+  if (window.XMLHttpRequest) xmlhttp=new XMLHttpRequest();
+  else xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+
+  xmlhttp.onreadystatechange=function()
+  {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+      var doc = document.getElementById("sakrij");
+      if(doc!==null) doc.style.display="none";
+
+      document.getElementById("injectView").innerHTML=xmlhttp.responseText;
+
+      var body=document.getElementsByTagName("body")[0];
+      var counter=document.getElementById("injectScript");
+      if(counter!==null){
+        body.removeChild(counter);
+      }
+      var scriptToInject=document.createElement("script");
+      scriptToInject.setAttribute("id", "injectScript");
+      scriptToInject.setAttribute("src", "js/novosti.js");
+      body.appendChild(scriptToInject);
+    }
+  }
+  xmlhttp.open("GET","novosti2.php",true);
+  xmlhttp.send();
+}
 
 function goTo(url)
 {

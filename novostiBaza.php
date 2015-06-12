@@ -33,10 +33,7 @@
 		echo		'</div>
 					<div class="novost-sadrzaj"> 
 						<p>'.trim($novost['sadrzaj']).'</p>';
-						if($isAdmin){
-		echo 				"<a href='#' style='float:left; padding-right:10px' onclick=editNews('".$novost['id']."')>Izmijeni Novost</a>";
-		echo 				"<a href='#' style='float:left' onclick=deleteNews('".$novost['id']."')>Obriši Novost</a>";
-						}
+						
 						if($novost['detaljno']!=null){
 		echo           		"<p class='detaljnije'>";
 		echo					"<a class='komSaDet' href=\"#\" onclick=\"return loadNewsComments('".$novost['id']."')\">	
@@ -53,6 +50,10 @@
 								".$brojKomentara." komentara
 							</a>
 						</p>";
+						if($isAdmin){
+		echo 				"<a href='#' style='float:right; ' onclick=editNews('".$novost['id']."')>Izmijeni Novost</a>";
+		echo 				"<a href='#' style='float:right; padding-right:10px' onclick=deleteNews('".$novost['id']."')>Obriši Novost</a>";
+						}
 		echo		'</div>
 				</div>
 			</div>
